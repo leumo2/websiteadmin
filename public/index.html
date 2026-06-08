@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel Admin Dashboard">
+    <title>Admin Panel - Dashboard</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="logo">AdminPanel</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span class="text">Dashboard</span>
+                </a>
+                <a href="#users" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span class="text">Users</span>
+                </a>
+                <a href="#analytics" class="nav-item">
+                    <span class="icon">📈</span>
+                    <span class="text">Analytics</span>
+                </a>
+                <a href="#settings" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span class="text">Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Cari...">
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-icon" title="Notifikasi">🔔</button>
+                        <div class="user-menu">
+                            <button class="user-btn" id="userBtn">
+                                <img src="https://via.placeholder.com/40" alt="User">
+                                <span>Admin</span>
+                            </button>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <a href="#profile">Profil</a>
+                                <a href="#settings">Pengaturan</a>
+                                <hr>
+                                <a href="#logout" onclick="logout()">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Dashboard Page -->
+                <section id="dashboard" class="page-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-info">
+                                <h3>Total Users</h3>
+                                <p class="stat-value" id="totalUsers">1,234</p>
+                                <small class="stat-change positive">+12% dari bulan lalu</small>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <h3>Revenue</h3>
+                                <p class="stat-value" id="totalRevenue">Rp 45.2M</p>
+                                <small class="stat-change positive">+8% dari bulan lalu</small>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-info">
+                                <h3>Total Orders</h3>
+                                <p class="stat-value" id="totalOrders">892</p>
+                                <small class="stat-change positive">+5% dari bulan lalu</small>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-info">
+                                <h3>Rating</h3>
+                                <p class="stat-value" id="avgRating">4.8/5</p>
+                                <small class="stat-change positive">+0.2 dari bulan lalu</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <div class="chart-card">
+                            <h3>Revenue Trend</h3>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>User Distribution</h3>
+                            <canvas id="userChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="recent-section">
+                        <h3>Recent Activities</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Activity</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentActivities">
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>Login</td>
+                                    <td>2 minutes ago</td>
+                                    <td><span class="badge success">Success</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Jane Smith</td>
+                                    <td>Upload File</td>
+                                    <td>15 minutes ago</td>
+                                    <td><span class="badge success">Success</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Mike Johnson</td>
+                                    <td>Settings Changed</td>
+                                    <td>1 hour ago</td>
+                                    <td><span class="badge warning">Warning</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Users Page -->
+                <section id="users" class="page-section">
+                    <div class="section-header">
+                        <h2>Manajemen Users</h2>
+                        <button class="btn btn-primary" onclick="openAddUserModal()">+ Add User</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Join Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersList">
+                            <tr>
+                                <td>#001</td>
+                                <td>John Doe</td>
+                                <td>john@example.com</td>
+                                <td>Admin</td>
+                                <td>2024-01-15</td>
+                                <td><span class="badge success">Active</span></td>
+                                <td>
+                                    <button class="btn-action">✏️</button>
+                                    <button class="btn-action">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Analytics Page -->
+                <section id="analytics" class="page-section">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Page Views</h3>
+                            <p class="big-number">45.2K</p>
+                            <small>This month</small>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Unique Visitors</h3>
+                            <p class="big-number">12.8K</p>
+                            <small>This month</small>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Bounce Rate</h3>
+                            <p class="big-number">32%</p>
+                            <small>This month</small>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Avg Session</h3>
+                            <p class="big-number">3m 25s</p>
+                            <small>This month</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Page -->
+                <section id="settings" class="page-section">
+                    <div class="settings-container">
+                        <h2>Settings</h2>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label>Site Name</label>
+                                <input type="text" value="Admin Panel" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Admin Email</label>
+                                <input type="email" value="admin@example.com" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Timezone</label>
+                                <select class="form-control">
+                                    <option>UTC</option>
+                                    <option>Asia/Jakarta</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Settings</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddUserModal()">&times;</span>
+            <h2>Add New User</h2>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select class="form-control" required>
+                        <option>User</option>
+                        <option>Admin</option>
+                        <option>Moderator</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddUserModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/framework.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
