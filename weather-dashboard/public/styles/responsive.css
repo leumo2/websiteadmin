@@ -1,0 +1,168 @@
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 15px;
+    }
+
+    .logo h1 {
+        font-size: 18px;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    .btn-search, .btn-location {
+        flex: 1;
+    }
+
+    .current-weather {
+        padding: 25px;
+    }
+
+    .weather-main {
+        grid-template-columns: 1fr;
+    }
+
+    .weather-icon {
+        font-size: 60px;
+    }
+
+    .temperature {
+        font-size: 48px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .saved-locations {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .logo-icon {
+        font-size: 24px;
+    }
+
+    .logo h1 {
+        font-size: 16px;
+    }
+
+    .main-content {
+        padding: 15px 10px;
+    }
+
+    .current-weather {
+        padding: 15px;
+    }
+
+    .weather-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .weather-icon {
+        font-size: 50px;
+    }
+
+    .temperature {
+        font-size: 36px;
+    }
+
+    .condition {
+        font-size: 18px;
+    }
+
+    .weather-extra {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .extra-item {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .forecast-section h2,
+    .details-section h2,
+    .saved-locations-section h2 {
+        font-size: 16px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .forecast-card {
+        padding: 12px;
+    }
+
+    .forecast-temp {
+        font-size: 16px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .saved-locations {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        font-size: 12px;
+    }
+}
+
+/* Small Mobile (360px and below) */
+@media (max-width: 360px) {
+    .header-container {
+        padding: 0 10px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo h1 {
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 10px 8px;
+    }
+
+    .current-weather {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .weather-icon {
+        font-size: 40px;
+    }
+
+    .temperature {
+        font-size: 32px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .forecast-card {
+        padding: 10px;
+    }
+}
